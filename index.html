@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAYERAH - AI AUTOMATION SYSTEMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap');
+
+  * {
+    font-family: 'Darker Grotesque', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Scroll reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-scale.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Orbit animations */
+  .orbit-ring {
+    animation: orbit 30s linear infinite;
+  }
+
+  .orbit-ring-reverse {
+    animation: orbit-reverse 25s linear infinite;
+  }
+
+  .orbit-ring-slow {
+    animation: orbit 40s linear infinite;
+  }
+
+  @keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes orbit-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  /* Pulse animation for core */
+  @keyframes pulse-core {
+    0%, 100% { 
+      opacity: 0.4; 
+      transform: scale(1);
+      box-shadow: 0 0 60px rgba(100, 100, 100, 0.3);
+    }
+    50% { 
+      opacity: 0.6; 
+      transform: scale(1.05);
+      box-shadow: 0 0 80px rgba(100, 100, 100, 0.4);
+    }
+  }
+
+  .pulse-core {
+    animation: pulse-core 4s ease-in-out infinite;
+  }
+
+  /* Static line decoration */
+  .line-decoration {
+    position: relative;
+  }
+
+  .line-decoration::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: #646464;
+    transform: translateY(-50%);
+  }
+
+  .line-decoration-right::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: #646464;
+    transform: translateY(-50%);
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Header blur effect */
+  .header-blur {
+    backdrop-filter: blur(12px);
+    background: rgba(18, 18, 18, 0.85);
+    border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+  }
+
+  /* Grid background */
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(100, 100, 100, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(100, 100, 100, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Card hover effect */
+  .service-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(100, 100, 100, 0.15);
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(100, 100, 100, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Text reveal on scroll */
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+
+  /* Number counter */
+  .stat-number {
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body class="bg-[#121212] text-[#E8E8E8]">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-9 h-9 border border-[#646464] flex items-center justify-center">
+                    <div class="w-1.5 h-1.5 bg-[#E8E8E8]"></div>
+                </div>
+                <span class="text-lg font-medium tracking-wider text-[#E8E8E8] mono" id="logo-text">DAYERAH</span>
+            </div>
+            <button onclick="scrollToContact()" class="px-6 py-2.5 border border-[#646464] text-[#E8E8E8] text-sm font-medium tracking-wider hover:bg-[#E8E8E8] hover:text-[#121212] transition-all duration-300">
+                GET IN TOUCH
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen bg-[#121212] flex items-center justify-center overflow-hidden">
+        <!-- Animated Orbit System -->
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="orbit-ring absolute w-[300px] h-[300px] border border-[#646464]/20"></div>
+            <div class="orbit-ring-reverse absolute w-[450px] h-[450px] border border-[#646464]/15"></div>
+            <div class="orbit-ring-slow absolute w-[600px] h-[600px] border border-[#646464]/10"></div>
+            
+            <!-- Static Grid Markers -->
+            <div class="absolute w-2 h-2 border border-[#646464]/40" style="top: 25%; left: 25%;"></div>
+            <div class="absolute w-2 h-2 border border-[#646464]/40" style="top: 25%; right: 25%;"></div>
+            <div class="absolute w-2 h-2 border border-[#646464]/40" style="bottom: 25%; left: 25%;"></div>
+            <div class="absolute w-2 h-2 border border-[#646464]/40" style="bottom: 25%; right: 25%;"></div>
+            
+            <!-- Central Core -->
+            <div class="absolute w-24 h-24 border border-[#646464]/50 pulse-core"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-6 max-w-5xl">
+            <div class="reveal">
+                <h1 class="text-8xl md:text-9xl font-bold text-[#E8E8E8] mb-3 tracking-tight">DAYERAH</h1>
+            </div>
+            <div class="reveal stagger-1">
+                <p class="text-xs uppercase tracking-[0.3em] text-[#646464] mb-12 mono">AI AUTOMATION SYSTEMS</p>
+            </div>
+            <div class="reveal stagger-2">
+                <h2 class="text-4xl md:text-5xl font-medium text-[#E8E8E8] mb-8 tracking-wide max-w-3xl mx-auto">SYSTEMS THAT RUN WHILE YOU DON'T</h2>
+            </div>
+            <div class="reveal stagger-3">
+                <p class="text-base text-[#999999] mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                    CUSTOM AI AUTOMATION THAT HANDLES YOUR OPERATIONS AROUND THE CLOCK. 
+                    NO MANUAL WORK. NO CONSTANT OVERSIGHT. JUST CONTINUOUS VALUE.
+                </p>
+            </div>
+            <div class="reveal stagger-4">
+                <button onclick="scrollToContact()" class="px-10 py-3.5 border-2 border-[#646464] text-[#E8E8E8] text-sm font-medium tracking-wider hover:bg-[#E8E8E8] hover:text-[#121212] transition-all duration-300">
+                    START A CONVERSATION
+                </button>
+            </div>
+        </div>
+        
+        <!-- Bottom Fade -->
+        <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#121212] to-transparent"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="bg-[#121212] py-32 px-6 grid-bg relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">WHAT WE BUILD</h2>
+                <div class="w-16 h-px bg-[#646464] mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Automation Systems -->
+                <div class="service-card reveal stagger-1 bg-[#1A1A1A] p-10 rounded-none">
+                    <div class="w-14 h-14 border border-[#646464] flex items-center justify-center mb-8">
+                        <svg class="w-7 h-7 text-[#E8E8E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-5 tracking-wide">AUTOMATION SYSTEMS</h3>
+                    <p class="text-[#999999] mb-8 font-light leading-relaxed">CUSTOM WORKFLOWS THAT CONNECT YOUR TOOLS AND ELIMINATE REPETITIVE TASKS.</p>
+                    <ul class="space-y-3 text-sm text-[#999999] mono">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>SAVE 10+ HOURS PER WEEK PER EMPLOYEE</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>ZERO MANUAL DATA ENTRY</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>INSTANT NOTIFICATIONS WHEN ACTION IS NEEDED</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Voice Agents -->
+                <div class="service-card reveal stagger-2 bg-[#1A1A1A] p-10 rounded-none">
+                    <div class="w-14 h-14 border border-[#646464] flex items-center justify-center mb-8">
+                        <svg class="w-7 h-7 text-[#E8E8E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-5 tracking-wide">VOICE AGENTS</h3>
+                    <p class="text-[#999999] mb-8 font-light leading-relaxed">INTELLIGENT PHONE SYSTEMS THAT SOUND HUMAN AND HANDLE COMPLEX CONVERSATIONS.</p>
+                    <ul class="space-y-3 text-sm text-[#999999] mono">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>HANDLE INBOUND & OUTBOUND CALLS 24/7</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>BOOK AND RESCHEDULE AUTOMATICALLY</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>CAPTURE EVERY DETAIL IN YOUR CRM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Custom Applications -->
+                <div class="service-card reveal stagger-3 bg-[#1A1A1A] p-10 rounded-none">
+                    <div class="w-14 h-14 border border-[#646464] flex items-center justify-center mb-8">
+                        <svg class="w-7 h-7 text-[#E8E8E8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-5 tracking-wide">CUSTOM APPLICATIONS</h3>
+                    <p class="text-[#999999] mb-8 font-light leading-relaxed">AI-POWERED TOOLS BUILT EXACTLY FOR YOUR PROCESS AND INTEGRATED WITH YOUR EXISTING STACK.</p>
+                    <ul class="space-y-3 text-sm text-[#999999] mono">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>INTERNAL DASHBOARDS AND PORTALS</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>INTELLIGENT DOCUMENT PROCESSING</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#646464] mt-1">—</span>
+                            <span>CUSTOM AI ASSISTANTS FOR YOUR TEAM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="bg-[#0D0D0D] py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">HOW IT WORKS</h2>
+                <div class="w-16 h-px bg-[#646464] mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="reveal-left stagger-1 text-center">
+                    <div class="text-6xl font-bold text-[#646464] mb-6 mono">01</div>
+                    <h3 class="text-xl font-bold mb-4 tracking-wide">DISCOVERY</h3>
+                    <p class="text-[#999999] font-light leading-relaxed">WE ANALYZE YOUR CURRENT OPERATIONS TO IDENTIFY THE HIGHEST-IMPACT AUTOMATION OPPORTUNITIES</p>
+                </div>
+                
+                <div class="reveal-left stagger-2 text-center">
+                    <div class="text-6xl font-bold text-[#646464] mb-6 mono">02</div>
+                    <h3 class="text-xl font-bold mb-4 tracking-wide">BUILD</h3>
+                    <p class="text-[#999999] font-light leading-relaxed">CUSTOM SYSTEMS DESIGNED SPECIFICALLY FOR YOUR WORKFLOW, NOT OFF-THE-SHELF SOLUTIONS</p>
+                </div>
+                
+                <div class="reveal-left stagger-3 text-center">
+                    <div class="text-6xl font-bold text-[#646464] mb-6 mono">03</div>
+                    <h3 class="text-xl font-bold mb-4 tracking-wide">DEPLOY</h3>
+                    <p class="text-[#999999] font-light leading-relaxed">SEAMLESS INTEGRATION WITH YOUR EXISTING TOOLS AND ONGOING SUPPORT AS YOUR NEEDS EVOLVE</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-[#121212] py-24 px-6 border-t border-[#646464]/20">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="reveal-scale stagger-1 text-center border border-[#646464]/20 p-12">
+                    <div class="text-6xl font-bold text-[#E8E8E8] mb-3 mono stat-number">10+</div>
+                    <p class="text-sm text-[#646464] tracking-wider mono">HOURS SAVED WEEKLY</p>
+                </div>
+                
+                <div class="reveal-scale stagger-2 text-center border border-[#646464]/20 p-12">
+                    <div class="text-6xl font-bold text-[#E8E8E8] mb-3 mono stat-number">24/7</div>
+                    <p class="text-sm text-[#646464] tracking-wider mono">AUTONOMOUS OPERATION</p>
+                </div>
+                
+                <div class="reveal-scale stagger-3 text-center border border-[#646464]/20 p-12">
+                    <div class="text-6xl font-bold text-[#E8E8E8] mb-3 mono stat-number">100%</div>
+                    <p class="text-sm text-[#646464] tracking-wider mono">CUSTOM SOLUTIONS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-[#0D0D0D] py-32 px-6 border-t border-[#646464]/20">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6 tracking-tight">START A CONVERSATION</h2>
+                <p class="text-[#999999] font-light text-lg">TELL US WHAT YOU WANT TO AUTOMATE. WE'LL REPLY WITHIN 24 HOURS.</p>
+                <div class="w-16 h-px bg-[#646464] mx-auto mt-8"></div>
+            </div>
+
+            <div class="reveal bg-[#1A1A1A] border border-[#646464]/30 p-1">
+                <div class="relative w-full overflow-hidden bg-[#121212]">
+                    <iframe
+                        class="airtable-embed w-full"
+                        src="https://airtable.com/embed/app92CmITK8vmTl1J/pagAudaHSPTFkOaHr/form"
+                        frameborder="0"
+                        onmousewheel=""
+                        height="900"
+                        style="background: transparent;"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0A0A0A] py-16 px-6 border-t border-[#646464]/20">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <div class="w-9 h-9 border border-[#646464] flex items-center justify-center">
+                    <div class="w-1.5 h-1.5 bg-[#E8E8E8]"></div>
+                </div>
+                <span class="text-lg font-medium tracking-wider text-[#E8E8E8] mono">DAYERAH</span>
+            </div>
+            <p class="text-[#646464] text-sm mb-6 tracking-wide mono">AI AUTOMATION SYSTEMS THAT NEVER STOP</p>
+            <p class="text-[#646464]/60 text-xs tracking-wider mono">© 2026 DAYERAH. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            
+            if (window.scrollY > 50) {
+                header.classList.add('header-blur');
+            } else {
+                header.classList.remove('header-blur');
+            }
+        });
+
+        // Scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll to contact
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (!contactSection) return;
+
+            const headerOffset = 90;
+            const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
