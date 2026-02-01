@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="cf-email-protection" content="false">
     <title>DAYERAH - AI AUTOMATION SOLUTIONS</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts loaded via <link> — reliable through Cloudflare, unlike @import inside <style> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Darker+Grotesque:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Darker+Grotesque:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
-
   :root {
     --purple:  #662d91;
     --pink:    #ee2a7b;
@@ -285,23 +288,22 @@
   </header>
 
   <!-- Hero -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <section id="heroSection" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 flex items-center justify-center parallax" data-speed="0.35">
       <div class="orbit-ring  absolute w-[300px] h-[300px] border rounded-full"></div>
       <div class="orbit-ring-2 absolute w-[460px] h-[460px] border rounded-full"></div>
       <div class="orbit-ring-3 absolute w-[620px] h-[620px] border rounded-full"></div>
-
       <div class="core-glow"></div>
     </div>
 
-    <!-- Interactive particle canvas — sits behind text, above orbital rings -->
+    <!-- Interactive particle canvas -->
     <canvas id="particleCanvas" class="absolute inset-0 w-full h-full" style="z-index:1; pointer-events:auto;"></canvas>
 
     <div class="scan-line"></div>
 
     <div class="relative z-10 text-center px-6 max-w-6xl py-8 md:py-0">
       <div class="reveal-blur">
-        <h1 id="heroTitle" class="text-8xl md:text-9xl mb-3 gradient-text" style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.08em;">DAYERAH</h1>
+        <h1 id="heroTitle" class="text-8xl md:text-9xl mb-3 gradient-text" style="font-family:'Bebas Neue',sans-serif;">DAYERAH</h1>
       </div>
       <div class="reveal-blur stagger-1">
         <p id="heroSubtitle" class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-14 mono">AI AUTOMATION SOLUTIONS</p>
@@ -346,9 +348,9 @@
           <h3 class="text-3xl font-bold mb-5 tracking-wide">AUTOMATION<br/>SYSTEMS</h3>
           <p class="text-gray-300 mb-8 font-light leading-relaxed text-lg">CUSTOM WORKFLOWS THAT CONNECT YOUR TOOLS AND ELIMINATE REPETITIVE TASKS.</p>
           <ul class="space-y-4 text-sm text-gray-400 mono">
-            <li class="flex items-start gap-3"><span style="color:var(--purple);" class="mt-0.5">→</span><span>REDUCE OPERATIONAL OVERHEAD BY 40%</span></li>
-            <li class="flex items-start gap-3"><span style="color:var(--purple);" class="mt-0.5">→</span><span>ZERO MANUAL DATA ENTRY</span></li>
-            <li class="flex items-start gap-3"><span style="color:var(--purple);" class="mt-0.5">→</span><span>INSTANT NOTIFICATIONS WHEN ACTION NEEDED</span></li>
+            <li class="flex items-start gap-3"><span style="color:var(--purple);" class="mt-0.5">→</span><span>CONNECT YOUR EXISTING TOOLS SEAMLESSLY</span></li>
+            <li class="flex items-start gap-3"><span style="color:var(--purple);" class="mt-0.5">→</span><span>ELIMINATE REPETITIVE MANUAL WORK</span></li>
+            <li class="flex items-start gap-3"><span style="color:var(--purple);" class="mt-0.5">→</span><span>GET NOTIFIED ONLY WHEN IT MATTERS</span></li>
           </ul>
         </div>
 
@@ -424,8 +426,6 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-
-        <!-- We build around your business -->
         <div class="stat-card reveal-scale stagger-1 gradient-border p-10 backdrop-blur-sm">
           <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-6 icon-pill-purple">
             <svg class="w-5 h-5" fill="none" stroke="var(--purple)" stroke-width="1.5" viewBox="0 0 24 24">
@@ -436,7 +436,6 @@
           <p class="text-gray-300 font-light leading-relaxed">No generic templates. We map your actual processes first, then build automation that fits how you already operate — not the other way around.</p>
         </div>
 
-        <!-- No babysitting required -->
         <div class="stat-card reveal-scale stagger-2 gradient-border p-10 backdrop-blur-sm">
           <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-6 icon-pill-pink">
             <svg class="w-5 h-5" fill="none" stroke="var(--pink)" stroke-width="1.5" viewBox="0 0 24 24">
@@ -447,7 +446,6 @@
           <p class="text-gray-300 font-light leading-relaxed">Once it's running, it runs. We handle edge cases, failures, and updates so your team can focus on what actually matters to the business.</p>
         </div>
 
-        <!-- We stay in the picture -->
         <div class="stat-card reveal-scale stagger-3 gradient-border p-10 backdrop-blur-sm">
           <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-6 icon-pill-teal">
             <svg class="w-5 h-5" fill="none" stroke="var(--teal)" stroke-width="1.5" viewBox="0 0 24 24">
@@ -467,11 +465,11 @@
       <div class="reveal text-center mb-20">
         <h2 class="section-title text-6xl md:text-7xl font-black mb-6 tracking-tight gradient-text">START A CONVERSATION</h2>
         <p class="text-xl text-gray-300 font-light mb-4">TELL US WHAT YOU WANT TO AUTOMATE. WE'LL REPLY WITHIN 24 HOURS.</p>
-        <a href="/cdn-cgi/l/email-protection#bfd0d9d9d6dcd6ded3dbdec6dacdded7ffd8d2ded6d391dcd0d2" class="inline-flex items-center gap-2 text-sm mono tracking-wider text-gray-400 hover:text-white transition-colors duration-300" style="transition-duration: 0.4s;">
+        <a href="mailto:officialdayerah@gmail.com" class="inline-flex items-center gap-2 text-sm mono tracking-wider text-gray-400 hover:text-white" style="transition: color 0.4s cubic-bezier(0.22,1,0.36,1);">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
-          <span class="__cf_email__" data-cfemail="3e515858575d575f525a5f475b4c5f567e59535f5752105d5153">[email&#160;protected]</span>
+          officialdayerah@gmail.com
         </a>
         <div class="accent-line mx-auto mt-8"></div>
       </div>
@@ -533,54 +531,39 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal,.reveal-scale,.reveal-left,.reveal-blur').forEach(el => obs.observe(el));
 
-// ─── Match DAYERAH width to subtitle width ───
+// ─── Match subtitle width to DAYERAH width ───
+// DAYERAH at 9rem Bebas Neue is wider than the 12px subtitle —
+// so we spread the subtitle's letter-spacing to align under it.
 (function matchHeroWidths() {
   const title    = document.getElementById('heroTitle');
   const subtitle = document.getElementById('heroSubtitle');
   if (!title || !subtitle) return;
 
-  // Off-screen measurement container
-  const measurer = document.createElement('div');
-  measurer.style.cssText = 'position:fixed;top:-9999px;left:-9999px;visibility:hidden;white-space:nowrap;pointer-events:none;';
-  document.body.appendChild(measurer);
-
   function solve() {
-    // Clone subtitle into measurer to get its true text width
-    const subClone = subtitle.cloneNode(true);
-    subClone.style.cssText = 'display:inline-block;visibility:hidden;';
-    // Copy computed styles that affect width
-    const subCS = getComputedStyle(subtitle);
-    subClone.style.fontFamily     = subCS.fontFamily;
-    subClone.style.fontSize       = subCS.fontSize;
-    subClone.style.letterSpacing  = subCS.letterSpacing;
-    subClone.style.textTransform  = subCS.textTransform;
-    subClone.style.fontWeight     = subCS.fontWeight;
-    measurer.innerHTML = '';
-    measurer.appendChild(subClone);
-    const targetW = subClone.getBoundingClientRect().width;
+    // 1. Measure DAYERAH's rendered width (target)
+    const titleCS  = getComputedStyle(title);
+    const titleCtx = document.createElement('canvas').getContext('2d');
+    titleCtx.font  = titleCS.fontWeight + ' ' + titleCS.fontSize + ' ' + titleCS.fontFamily;
+    const titleBaseW = titleCtx.measureText(title.textContent).width;
+    // title letter-spacing: applied after each char (charCount gaps including trailing)
+    const titleLS   = parseFloat(titleCS.letterSpacing) || 0;
+    const titleW    = titleBaseW + title.textContent.length * titleLS;
 
-    // Clone title into measurer for binary search
-    const titleClone = title.cloneNode(true);
-    titleClone.style.cssText = 'display:inline-block;visibility:hidden;';
-    const titleCS = getComputedStyle(title);
-    titleClone.style.fontFamily   = titleCS.fontFamily;
-    titleClone.style.fontSize     = titleCS.fontSize;
-    titleClone.style.fontWeight   = titleCS.fontWeight;
-    titleClone.style.textTransform = titleCS.textTransform;
-    measurer.appendChild(titleClone);
+    // 2. Measure subtitle's base text width (no letter-spacing)
+    const subCS  = getComputedStyle(subtitle);
+    const subCtx = document.createElement('canvas').getContext('2d');
+    subCtx.font  = subCS.fontWeight + ' ' + subCS.fontSize + ' ' + subCS.fontFamily;
+    const subBaseW = subCtx.measureText(subtitle.textContent).width;
+    const subChars = subtitle.textContent.length;
 
-    // Binary search for the letter-spacing that makes titleClone.width === targetW
-    let lo = 0, hi = 300, mid;
-    for (let i = 0; i < 50; i++) {
-      mid = (lo + hi) / 2;
-      titleClone.style.letterSpacing = mid + 'px';
-      if (titleClone.getBoundingClientRect().width < targetW) lo = mid;
-      else hi = mid;
+    // 3. Solve: titleW = subBaseW + subChars * spacing
+    //    spacing = (titleW - subBaseW) / subChars
+    if (subChars <= 0) return;
+    const neededSpacing = (titleW - subBaseW) / subChars;
+
+    if (neededSpacing > 0) {
+      subtitle.style.letterSpacing = neededSpacing + 'px';
     }
-    const result = (lo + hi) / 2;
-
-    // Apply to the real title
-    title.style.letterSpacing = result + 'px';
   }
 
   document.fonts.ready.then(() => {
@@ -618,67 +601,55 @@ document.addEventListener('mousemove', e => {
   const ctx    = canvas.getContext('2d');
   const heroEl = canvas.closest('section');
 
-  // Brand palette
   const COLORS = [
-    { r:102, g:45,  b:145 }, // purple
-    { r:238, g:42,  b:123 }, // pink
-    { r:0,   g:167, b:157 }, // teal
+    { r:102, g:45,  b:145 },
+    { r:238, g:42,  b:123 },
+    { r:0,   g:167, b:157 },
   ];
 
   let W, H, mouse = { x: -9999, y: -9999 };
   let particles = [];
 
-  // ─── Particle class ───
   function Particle() { this.reset(true); }
 
   Particle.prototype.reset = function(init) {
-    this.ox = Math.random() * W;           // origin x
-    this.oy = Math.random() * H;           // origin y
-    this.x  = init ? this.ox : W * Math.random(); // current pos
+    this.ox = Math.random() * W;
+    this.oy = Math.random() * H;
+    this.x  = init ? this.ox : W * Math.random();
     this.y  = init ? this.oy : H * Math.random();
-    this.r  = 1.5 + Math.random() * 2.5;   // radius 1.5–4
+    this.r  = 1.5 + Math.random() * 2.5;
     this.c  = COLORS[Math.floor(Math.random() * COLORS.length)];
-    this.baseOpacity = 0.15 + Math.random() * 0.35; // 0.15–0.5
+    this.baseOpacity = 0.15 + Math.random() * 0.35;
     this.opacity     = this.baseOpacity;
-    // idle drift velocity (very slow)
     this.vx = (Math.random() - 0.5) * 0.4;
     this.vy = (Math.random() - 0.5) * 0.4;
-    // drift phase for gentle oscillation
     this.phase = Math.random() * Math.PI * 2;
     this.speed = 0.3 + Math.random() * 0.7;
   };
 
-  // ─── Resize ───
   function resize() {
     const rect = heroEl.getBoundingClientRect();
     W = canvas.width  = rect.width;
     H = canvas.height = rect.height;
-    // re-seed so density stays right
     const count = Math.floor((W * H) / 10000);
     particles.length = 0;
     for (let i = 0; i < count; i++) particles.push(new Particle());
   }
 
-  // ─── Update ───
-  const REPEL_RADIUS = 140;   // how far around the cursor dots flee
-  const REPEL_FORCE  = 0.6;   // strength of push (lerp factor per frame toward repelled pos)
-  const LERP_BACK    = 0.035; // how fast they float back to origin
+  const REPEL_RADIUS = 140;
 
   function update(time) {
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
 
-      // Idle drift: origin wanders gently via sine
       p.ox += Math.sin(time * 0.001 * p.speed + p.phase)     * 0.18;
       p.oy += Math.cos(time * 0.001 * p.speed + p.phase + 1) * 0.18;
 
-      // Wrap origin so dots stay in bounds
       if (p.ox < -20)  p.ox = W + 10;
       if (p.ox > W+20) p.ox = -10;
       if (p.oy < -20)  p.oy = H + 10;
       if (p.oy > H+20) p.oy = -10;
 
-      // Distance to mouse
       const dx = p.ox - mouse.x;
       const dy = p.oy - mouse.y;
       const dist = Math.sqrt(dx*dx + dy*dy);
@@ -688,24 +659,20 @@ document.addEventListener('mousemove', e => {
       let targetOpacity = p.baseOpacity;
 
       if (dist < REPEL_RADIUS && dist > 0) {
-        // Push away from cursor — force increases as cursor gets closer
         const force = (1 - dist / REPEL_RADIUS) * 90;
-        const nx = dx / dist; // normalized direction
+        const nx = dx / dist;
         const ny = dy / dist;
         targetX = p.ox + nx * force;
         targetY = p.oy + ny * force;
-        // Brighten dots near cursor
         targetOpacity = Math.min(0.75, p.baseOpacity + (1 - dist / REPEL_RADIUS) * 0.45);
       }
 
-      // Lerp current position toward target (smooth glide)
       p.x += (targetX - p.x) * 0.06;
       p.y += (targetY - p.y) * 0.06;
       p.opacity += (targetOpacity - p.opacity) * 0.08;
     }
   }
 
-  // ─── Draw ───
   function draw() {
     ctx.clearRect(0, 0, W, H);
     for (let i = 0; i < particles.length; i++) {
@@ -717,14 +684,12 @@ document.addEventListener('mousemove', e => {
     }
   }
 
-  // ─── Loop ───
   function loop(time) {
     update(time);
     draw();
     requestAnimationFrame(loop);
   }
 
-  // ─── Mouse tracking (only while hero is in view) ───
   function onMove(e) {
     const rect = canvas.getBoundingClientRect();
     mouse.x = e.clientX - rect.left;
@@ -735,9 +700,10 @@ document.addEventListener('mousemove', e => {
   heroEl.addEventListener('mousemove', onMove, { passive: true });
   heroEl.addEventListener('mouseleave', onLeave);
 
-  // ─── Init ───
   resize();
   window.addEventListener('resize', resize);
   requestAnimationFrame(loop);
 })();
 </script>
+</body>
+</html>
